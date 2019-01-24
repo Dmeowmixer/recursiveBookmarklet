@@ -1,7 +1,7 @@
 let target = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
 let wordArr = [];
 let wordObj = {}
-let renderDiv = document.createElement('DIV').id = 'renderDiv';
+let renderDiv = document.createElement('div');
 document.body.appendChild(renderDiv);
 function getText(targ){
   for(var i = 0; i < targ.length; i++){
@@ -16,8 +16,10 @@ wordArr.forEach(x => {
     wordObj[x[i]] = x[i].length
   }
 });
-
-Object.keys(wordObj).forEach(function(key,val) {
-  let pEle = document.createElement('p').innerHTML = key + ' ' + wordObj[key];
-  renderDiv.appendChild(pEle);
-});
+for (var key in wordObj){
+  for(var prop in wordObj){
+    let injectedElement = document.createElement('p');
+    injectedElement.innerHTML = prop + ' ' + wordObj[prop];
+    renderDiv.appendChild(injectedElement);
+  }
+}
